@@ -10,7 +10,6 @@ import webbrowser
 import numpy as np
 import pandas as pd
 
-
 class HyperlinkManager:
 
     def __init__(self, text):
@@ -75,7 +74,6 @@ classifier.fit(X_train, y_train)
 # Saving the information of columns
 cols     = training_dataset.columns
 cols     = cols[:-1]
-
 
 # Checking the Important features
 importances = classifier.feature_importances_
@@ -167,18 +165,15 @@ def tree_to_code(tree, feature_names):
         #print("def tree({}):".format(", ".join(feature_names)))
         symptoms_present = []   
 #        recurse(0, 1)
-    
 
 def execute_bot():
 #    print("Please reply with yes/Yes or no/No for the following symptoms")    
     tree_to_code(classifier,cols)
 
-
-
+    
 # This section of code to be run after scraping the data
 
 doc_dataset = pd.read_csv('doctors_dataset.csv', names = ['Name', 'Description'])
-
 
 diseases = dimensionality_reduction.index
 diseases = pd.DataFrame(diseases)
@@ -190,7 +185,6 @@ doctors['disease'] = np.nan
 
 doctors['disease'] = diseases['prognosis']
 
-
 doctors['name'] = doc_dataset['Name']
 doctors['link'] = doc_dataset['Description']
 
@@ -198,12 +192,8 @@ record = doctors[doctors['disease'] == 'AIDS']
 record['name']
 record['link']
 
-
-
-
 # Execute the bot and see it in Action
 #execute_bot()
-
 
 class QuestionDigonosis(Frame):
     objIter=None
@@ -270,7 +260,6 @@ class QuestionDigonosis(Frame):
         QuestionDigonosis.objIter=recurse(0, 1)
         str1=QuestionDigonosis.objIter.__next__()
         self.txtQuestion.insert(END,str1+"\n")
-
 
 class MainForm(Frame):
     main_Root = None
@@ -373,7 +362,6 @@ class SignUp(Frame):
 #        print(self.username.get())
 #        print("Hello")
         
-        
         file = open(self.username_entry.get(), "w")
         file.write(self.username_entry.get() + "\n")
         file.write(self.password_entry.get())
@@ -389,8 +377,6 @@ class SignUp(Frame):
         frmQuestion = QuestionDigonosis(SignUp.main_Root)
 
         frmQuestion.pack()
-
-
 
 root = Tk()
 
