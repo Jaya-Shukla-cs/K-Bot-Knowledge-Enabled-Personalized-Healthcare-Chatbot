@@ -35,7 +35,6 @@ classifier.fit(X_train, y_train)
 cols     = training_dataset.columns
 cols     = cols[:-1]
 
-
 # Checking the Important features
 importances = classifier.feature_importances_
 indices = np.argsort(importances)[::-1]
@@ -103,17 +102,14 @@ def execute_bot():
                 print('Visit ', str(row['link'].values))
                 #print(present_disease[0])
                 
-    
         recurse(0, 1)
     
     tree_to_code(classifier,cols)
 
-
-
+    
 # This section of code to be run after scraping the data
 
 doc_dataset = pd.read_csv('doctors_dataset.csv', names = ['Name', 'Description'])
-
 
 diseases = dimensionality_reduction.index
 diseases = pd.DataFrame(diseases)
@@ -125,16 +121,12 @@ doctors['disease'] = np.nan
 
 doctors['disease'] = diseases['prognosis']
 
-
 doctors['name'] = doc_dataset['Name']
 doctors['link'] = doc_dataset['Description']
 
 record = doctors[doctors['disease'] == 'AIDS']
 record['name']
 record['link']
-
-
-
 
 # Execute the bot and see it in Action
 execute_bot()
